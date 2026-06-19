@@ -1,103 +1,98 @@
-# ⚡ Variable Benchtop Power Supply (SMPS + Wireless Control)
+# Variable Benchtop Power Supply (Flyback SMPS, BLE Control)
 
-A collaborative electronics project to design and build a **mains-powered variable benchtop power supply** using a **flyback switch-mode power supply (SMPS) topology**. Unlike traditional linear supplies, this design emphasizes efficiency, compactness, and the learning opportunities of modern power electronics.  
+Mains-powered variable benchtop power supply built around an isolated flyback
+SMPS with a multi-output transformer. The flyback secondaries supply a
+continuously adjustable CV/CC main output plus two auxiliary USB charge
+ports, all derived from a single transformer rather than separate supplies.
 
-We’re also integrating **Bluetooth (and possibly Wi-Fi)** for wireless monitoring and control, making this supply not just a lab tool but a connected device.
+Architecture reference: [`docs/system-block-diagram.drawio`](docs/system-block-diagram.drawio)
+(import into [diagrams.net](https://app.diagrams.net)).
 
----
+## Specification
 
-## ✨ Key Features
-- **Output Power**: Up to **45 W** (15 V, 3 A max)  
-- **Modes**: Constant Voltage (CV) and Constant Current (CC).
-- **Protecton**: Over Voltage Protection (OVP), Over Current Protection (OCP), Thermal Protection
-- **Outputs**:  
-  - Main: Standard 4 mm banana plug terminals  
-  - Auxiliary: USB-A and USB-C ports (independent of main supply)  
-  - **USB-C PD support** (if feasible, via dedicated PD controller IC)  
-- **Wireless Control**:  
-  - Bluetooth (baseline) for remote monitoring and adjustment  
-  - Possible Wi-Fi integration for extended features (logging, web UI)  
-- **User Interface**:  
-  - Display for voltage/current readouts  
-  - Rotary encoders for intuitive control  
-  - Wireless app/PC interface (future scope)  
-- **Enclosure**: TBD (custom 3D-printed front panel or off-the-shelf instrument case)
+| Parameter | Value |
+|---|---|
+| Main output | 0-24 V / 0-2 A, continuously adjustable, CV and CC modes |
+| Main output power | 48 W max |
+| USB-C output | 5 V / 3 A fixed (15 W) — v1. USB-PD up to 60 W reserved as a v2 option (STUSB4500 footprint, not populated in v1) |
+| USB-A output | Fast-charge profile (QC3.0 / BC1.2), ~18 W |
+| Protection | OVP (crowbar), OCP (shunt + comparator), OTP (thermistor) |
+| Input | 230 VAC mains |
+| Isolation | Flyback transformer, SELV secondary side |
+| Total system power budget (v1) | ~130 W |
 
----
+The main output spec supersedes earlier figures (15 V / 3 A, 45 W) quoted
+during initial scoping — current design point is 0-24 V / 0-2 A.
 
-## 🛠️ Tools & Components
-- **Circuit Design**: [KiCad](https://www.kicad.org/) (open-source EDA)  
-- **Topology**: Flyback SMPS (isolated, compact, efficient)  
-- **Controller MCU**: STM32 (primary candidate)  
-  - Alternatives: ESP32 (if Wi-Fi is prioritized)  
-- **USB-C PD**: Dedicated PD controller IC (e.g., STUSB4500)  
-- **Firmware**: C/C++ with STM32 HAL or FreeRTOS (depending on complexity)  
+## Architecture
 
----
+Single flyback transformer with four secondaries:
 
-## 📅 Project Roadmap
-**Month 1**  
-- Research + schematic design (flyback topology, USB PD feasibility, wireless module selection)  
-- Set up GitHub repo, task board, and documentation workflow  
+1. **Main bus** (~30 V / 2.5 A) → tracking buck pre-regulator (tracks ~2-3 V
+   above the commanded output to limit linear dissipation) → CV/CC control
+   core (DAC setpoints, shunt current sense, error amp + linear post-reg) →
+   0-24 V / 0-2 A output terminals.
+2. **USB-C bus** (~22 V / 3 A capacity) → CC logic resistors (Type-C current
+   advertisement) → fixed 5 V buck + VBUS current-limit switch → USB-C
+   connector. Bus voltage/current headroom is kept above the v1 load so a v2
+   PD upgrade (STUSB4500 + PD-capable buck) drops in without a transformer
+   respin.
+3. **USB-A bus** (~12 V / 2 A) → QC3.0/BC1.2 controller + buck → USB-A
+   connector.
+4. **Control/aux bus** (~12 V / 1 A) → 5 V / 3.3 V regulation → STM32, BLE
+   module, LCD, rotary encoders, status LEDs, fan.
 
-**Month 2**  
-- First PCB prototype (SMPS core + CV/CC control)  
-- Firmware skeleton (basic UI + wireless comms)  
+Primary side: mains switch, fuse, NTC inrush limiter, EMI filter (CM choke +
+X/Y caps), bridge rectifier + bulk cap, quasi-resonant/active-clamp flyback
+controller. Feedback to the primary controller is opto-isolated off the
+secondary side (SSR control loop). Output enable/sequencing and fault
+handling are managed by the STM32.
 
-**Month 3**  
-- Refined prototype with USB outputs + enclosure design  
-- Wireless integration (Bluetooth baseline, Wi-Fi optional)  
+## Hardware
 
-**Month 4**  
-- Testing, debugging, and validation (CV/CC transitions, load testing)  
-- Final enclosure + polish  
-- Documentation + public release  
+- **Topology**: Flyback SMPS, quasi-resonant or active-clamp controller,
+  multi-output transformer (single primary, four secondaries)
+- **MCU**: STM32 — setpoint DAC control, ADC sensing, supervisory logic, UI,
+  BLE link
+- **Wireless**: Bluetooth Low Energy (dedicated module + antenna). Wi-Fi is
+  not in scope for this design.
+- **EDA**: [KiCad](https://www.kicad.org/)
+- **Enclosure**: Plastic (chosen for BLE range; requires internal EMI
+  shielding consideration given the flyback's switching noise)
 
----
+## Status
 
-## 🔬 Development Practices
-- **Version Control**: GitHub for schematics, firmware, and docs  
-- **Task Management**: GitHub Projects / Notion for milestones  
-- **Simulation**: SPICE models for SMPS stability before prototyping  
-- **Testing**:  
-  - Low-voltage isolated tests first  
-  - Load testing with electronic loads/resistors  
-  - Oscilloscope validation of CV/CC transitions  
+Architecture and power budget defined (see block diagram above); USB-C PD
+explicitly deferred to a later revision. Currently in schematic capture and
+transformer design.
 
----
+## Roadmap
 
-## 📲 Wireless Control
-- **Bluetooth**:  
-  - Mobile/desktop app for setting voltage/current limits  
-  - Real-time monitoring of output values  
-- **Wi-Fi (optional)**:  
-  - Web dashboard for remote access  
-  - Data logging to cloud/local server  
+- **Schematic + transformer design** — flyback secondary sizing, CV/CC
+  control loop, protection circuitry
+- **First PCB prototype** — SMPS core, CV/CC control, control/aux rail
+- **Firmware skeleton** — setpoint control, ADC sensing, basic UI, BLE
+- **Refined prototype** — USB-A/USB-C outputs, enclosure integration
+- **Validation** — CV/CC transition response, load regulation, thermal,
+  OVP/OCP/OTP trip testing
+- **Documentation + release**
 
----
+## Development Practices
 
-## 🎥 Content & Documentation
-We’re documenting the journey for **students, hobbyists, and professionals**
+- **Version control**: Git/GitHub for schematics, firmware, and docs
+- **Simulation**: SPICE for flyback loop stability before prototyping
+- **Testing**: low-voltage isolated bring-up first, then load testing with
+  electronic loads, oscilloscope validation of CV/CC transitions and
+  protection trip points
 
----
+## Safety
 
-## 👥 Team & Collaboration
-This is a **two-person collaborative build**, with roles split between:  
-- **Power electronics & hardware design**  
-- **Firmware, UI, and wireless integration**  
+This is a mains-voltage project. The primary side carries lethal voltages
+and must be treated as hazardous at all times. Isolation, creepage/clearance,
+and fusing should follow IEC 62368-1 practice; do not operate the primary
+side outside an enclosed, isolated test setup.
 
-We overlap on integration, testing, and content creation.
+## Team
 
----
-
-## 🚧 Status
-Currently in **early design phase**:  
-- Flyback topology under evaluation  
-- Controller MCU selection (STM32 vs ESP32)  
-- Wireless module feasibility study  
-
----
-
-## 📢 Get Involved
-We welcome feedback, suggestions, and collaboration ideas!  
-Follow our progress on social media, or contribute via GitHub issues and discussions.  
+Two-person build: power electronics/hardware design, and firmware/UI/
+wireless integration, with overlap on system integration and test.
