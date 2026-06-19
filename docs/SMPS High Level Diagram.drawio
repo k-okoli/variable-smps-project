@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36" version="27.2.0">
+  <diagram name="Page-1" id="0c0Epcuh0S9LR-gcUcQv">
+    <mxGraphModel dx="1665" dy="838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wy35QgNuY-qCRuHHgspy-1" value="230V Mains" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="210" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-2" value="Bench Power Supply" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="150" width="245" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="wy35QgNuY-qCRuHHgspy-1" target="wy35QgNuY-qCRuHHgspy-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="320" as="sourcePoint" />
+            <mxPoint x="290" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-4" value="C13 cable" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="210" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-5" value="USB A" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="290" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-7" value="24V / 2A" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="285" width="50" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-8" value="USB C" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="290" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-13" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="440" width="520" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-14" value="Flyback AC/DC Converter&lt;div&gt;10A output&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-15" value="5V Regulator" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="595" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-16" value="LCD Display" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="700" width="250" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-17" value="24V Output" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="650" y="490" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-18" value="USB C&lt;div&gt;3A&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="650" y="610" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-19" value="USB A&lt;div&gt;2A&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="650" y="690" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-20" value="STM32&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="550" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-21" value="Antenna" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="535" y="447" width="90" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-23" value="Plastic Enclosure" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="160" y="720" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-24" value="5V Regulator" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="695" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-25" value="3v3 Regulator" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="490" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-26" value="Enable" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="560" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-27" value="Push button/ Rotary control" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="520" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-28" value="Main Power Switch" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="660" width="90" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-30" value="Heatsink x2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="650" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wy35QgNuY-qCRuHHgspy-32" value="Fan x1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="505" y="607.5" width="40" height="25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

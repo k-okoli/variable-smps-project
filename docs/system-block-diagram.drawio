@@ -1,0 +1,217 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0" type="device">
+  <diagram name="System Block Diagram" id="sysblock1">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2700" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Section labels -->
+        <mxCell id="lbl1" value="PRIMARY SIDE -- Mains-Referenced" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="0" width="500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl2" value="SECONDARY SIDE -- Isolated / SELV" style="text;html=1;align=left;verticalAlign=middle;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="0" width="500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lblBoundary" value="ISOLATION BOUNDARY&#10;(Y-Cap / Safety Isolation)" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=11;fontColor=#B85450;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="900" width="240" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Isolation boundary line -->
+        <mxCell id="boundaryLine" style="endArrow=none;dashed=1;html=1;strokeColor=#000000;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1460" y="0" as="sourcePoint" />
+            <mxPoint x="1460" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- PRIMARY SIDE -->
+        <mxCell id="n1" value="AC Mains&#10;230V" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="Main Power&#10;Switch" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="220" y="40" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="Fuse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="Inrush Limiter&#10;(NTC)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="EMI Filter&#10;(CM choke + X/Y caps)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="740" y="40" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" value="Bridge Rectifier +&#10;Bulk Capacitor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="940" y="40" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" value="Primary FET +&#10;QR / Active-Clamp Controller" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="40" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" value="Flyback Transformer&#10;(Multi-output, 4 secondaries&#10;~130W total, v1 / non-PD)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="20" width="160" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Main output chain -->
+        <mxCell id="n9" value="Sec. 1 Rect+Filter&#10;~30V / 2.5A (~75W)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="20" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" value="Tracking Buck&#10;Pre-Regulator&#10;(headroom ~2-3V above Vout)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1780" y="15" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" value="CV/CC Control Core&#10;(DAC setpoints, shunt I-sense,&#10;linear post-reg + error amp)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1980" y="10" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" value="Main Output&#10;0-24V / 0-2A&#10;(Banana Jacks)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="2230" y="20" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- USB-C chain: dual branch (v1 populated + v2 optional PD) -->
+        <mxCell id="n13" value="Sec. 2 Rect+Filter&#10;~22V / 3A capacity&#10;(future PD headroom)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="165" width="160" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="n14b" value="CC Logic Resistors&#10;(Type-C current adv.,&#10;Rp=10k -&gt; 3A @ 5V)&#10;[v1 - populated]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1780" y="100" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n15b" value="Fixed 5V Buck +&#10;VBUS Current-Limit&#10;Switch (eFuse)&#10;[v1 - populated]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="2000" y="100" width="170" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="n14" value="USB-PD Controller&#10;(STUSB4500)&#10;[v2 - optional]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1780" y="255" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" value="PD Buck Stage&#10;[v2 - optional]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="2000" y="255" width="170" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="n16" value="USB-C Connector&#10;v1: 5V / 3A fixed (15W)&#10;v2: up to 60W via PD (optional)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="2230" y="170" width="200" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="noteUpgrade" value="NOTE: Sec.2 bus kept at ~22V/3A&#10;capacity so a v2 PD upgrade needs&#10;no transformer respin for voltage --&#10;only the controller/buck stage&#10;swaps in. Winding gauge may need&#10;a bump only if full 60W is required." style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="2470" y="170" width="210" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- USB-A chain -->
+        <mxCell id="n17" value="Sec. 3 Rect+Filter&#10;~12V / 2A (~24W)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="350" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" value="QC3.0 / BC1.2&#10;Controller" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1780" y="350" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" value="Buck&#10;Stage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1990" y="350" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" value="USB-A Fast Charge&#10;(~18W)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="2180" y="350" width="180" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Aux / control bus -->
+        <mxCell id="n21" value="Sec. 4 Rect+Filter&#10;~12V / 1A (~12W)&#10;Control / Aux Bus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="455" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n22" value="5V&#10;Buck/LDO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n23" value="3.3V&#10;LDO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1960" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Peripherals -->
+        <mxCell id="n24" value="STM32&#10;MCU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="580" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n25" value="BLE Module&#10;+ Antenna" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1980" y="580" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n26" value="LCD Display" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="680" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n27" value="Rotary Encoders&#10;/ Buttons" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1980" y="680" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n28" value="Status LEDs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="780" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n29" value="Fan&#10;(PWM Controlled)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1980" y="780" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Protection -->
+        <mxCell id="n30" value="PROTECTION&#10;-- OVP (crowbar)&#10;-- OCP (shunt+comp)&#10;-- OTP (thermistor)" style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="580" width="170" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Feedback -->
+        <mxCell id="n31" value="Opto-Isolated Feedback&#10;(SSR control loop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="455" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="n36" value="LEGEND&#10;Solid black = power path&#10;Dashed blue = control / data&#10;Dashed purple = sense line&#10;Dashed red = isolated feedback&#10;Dashed box outline = optional /&#10;deferred to v2 (not populated)" style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#ffffff;strokeColor=#000000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="470" width="320" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Power edges (primary chain) -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n1" target="n2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n2" target="n3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n3" target="n4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n4" target="n5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n5" target="n6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n6" target="n7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" value="Primary winding" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n7" target="n8"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Secondary fan-out -->
+        <mxCell id="e8" value="Secondary 1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n8" target="n9"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e9" value="Secondary 2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n8" target="n13"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e10" value="Secondary 3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n8" target="n17"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e11" value="Secondary 4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n8" target="n21"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Main output chain -->
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n9" target="n10"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n10" target="n11"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n11" target="n12"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- USB-C branch A (v1, populated) -->
+        <mxCell id="e15b" value="(v1)" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n13" target="n14b"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e16b" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n14b" target="n15b"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e17b" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n15b" target="n16"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- USB-C branch B (v2, optional / deferred) -->
+        <mxCell id="e15" value="(v2 optional)" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#999999;" edge="1" parent="1" source="n13" target="n14"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#999999;" edge="1" parent="1" source="n14" target="n15"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#999999;" edge="1" parent="1" source="n15" target="n16"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- USB-A chain -->
+        <mxCell id="e18" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n17" target="n18"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e19" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n18" target="n19"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n19" target="n20"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Aux bus -->
+        <mxCell id="e21" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n21" target="n22"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e22" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n21" target="n23"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e23" value="3.3V" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n23" target="n24"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e24" value="5V" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n22" target="n29"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e25" value="5V" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n22" target="n26"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e26" value="5V" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#000000;" edge="1" parent="1" source="n22" target="n28"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Control / data signals -->
+        <mxCell id="e27" value="UART/SPI" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#0050ef;" edge="1" parent="1" source="n24" target="n25"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e28" value="Encoder input" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#0050ef;" edge="1" parent="1" source="n24" target="n27"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e29" value="Display data" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#0050ef;" edge="1" parent="1" source="n24" target="n26"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e30" value="Setpoint DAC + I-limit" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#0050ef;" edge="1" parent="1" source="n24" target="n11"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Sense / protection -->
+        <mxCell id="e31" value="V / I / T sense" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="n12" target="n30"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e32" value="Fault flags (ADC)" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="n30" target="n24"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e33" value="Enable" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#0050ef;" edge="1" parent="1" source="n24" target="n12"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e34" value="Enable" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#0050ef;" edge="1" parent="1" source="n24" target="n16"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e35" value="Enable" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#0050ef;" edge="1" parent="1" source="n24" target="n20"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Isolated feedback loop -->
+        <mxCell id="e36" value="Aux bus sense" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#9673a6;" edge="1" parent="1" source="n21" target="n31"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e37" value="Isolated FB (opto)" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;strokeColor=#b85450;strokeWidth=2;" edge="1" parent="1" source="n31" target="n7"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
